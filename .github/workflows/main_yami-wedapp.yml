@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_6f4d0655c617410ba6b1f14cd8b8e5bd }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_e2f6eb821ae043e6bc4db9fa7c59e33b }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_f1a679ffcacc43989062f7d04ba17aaf }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_fc851439198c46ccae5aa129df66b414 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_6f4d0655c617410ba6b1f14cd8b8e5bd }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_f1a679ffcacc43989062f7d04ba17aaf }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'yami-wedapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3b389dbd1c33464c834fc96b026aab47 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_6f4d0655c617410ba6b1f14cd8b8e5bd }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_98323d7a4fee444b8734b527994416bc }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_f1a679ffcacc43989062f7d04ba17aaf }}/appsvc/staticsite:${{ github.sha }}'
