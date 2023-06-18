@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_e92d839debb5477692af95cf2dde085b }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_3e556c079f6b4dfa99d877f9b8e631de }}
+        registry: https://yamichan189.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_ab10dd94ea8d459da428753d8fa27c9d }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_cf60bc3e89944f348272aaea97f26725 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_e92d839debb5477692af95cf2dde085b }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}
+        tags: yamichan189.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ab10dd94ea8d459da428753d8fa27c9d }}/yamichan189.azurecr.io:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'yami-wedapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6ffa658ca63f464fbb92fd048557c014 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_e92d839debb5477692af95cf2dde085b }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_413a2a6c0b3e4c29af4b0bf191d261cc }}
+        images: 'yamichan189.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ab10dd94ea8d459da428753d8fa27c9d }}/yamichan189.azurecr.io:${{ github.sha }}'
